@@ -1,0 +1,15 @@
+0.3.2 [beta]:
+= Widget label font size adapted for system settings
+= Application icon for activity resized for better view in low-dpi screens
+0.3.1 [beta]:
+= Widget layout optimization
+0.3.0 [beta]:
++ Widget interaction (on focus and on press reaction)
++ All Ukrainian operators support
+0.2.5 [beta]:
++ Russian language support
+0.2.4 [beta]:
+= Bug fix
++ Russian mainstreem operators support
+0.2.3 [beta]:
+= First public release

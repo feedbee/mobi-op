@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="footer">© 2010—2011 Валера Леонтьев. Виджет MobiOp. Версия 0.3.3. Web: <a href="http://valera.ws/mobiop/">http://valera.ws/mobiop/</a> E-mail: <a href="mailto:feedbee@gmail.com">feedbee@gmail.com</a></string>
+	<string name="about">MobiOp — это виджет рабочего стола для ОС Android. Он отображает логотип и название вашего оператора мобильной связи.
+Все логотипы операторов, которые отображает виджет, внедрены в программу. В этой версии поддерживаются только белорусские, украинские, казахские, узбекские и некоторые российские операторы связи: МТС, Velcom, Dialog, Life:), Мегафон, Билайн, Utel, Tele2, Укртелеком, Kyivstar, Intertelecom, PEOPLEnet, CDMA UA, Голден телеком, Kcell, Dalacomm, Kazakhtelecom, neo, Ucell, Perfectum Mobile. Нажатие на виджет инициирует USSD-запрос на получение баланса счета (*100#).</string>
+	<string name="app_name">MobiOp</string>
+	<string name="app_desc">Виджет логотипа и названия оператора связи</string>
+</resources>
