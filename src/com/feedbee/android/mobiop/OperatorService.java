@@ -75,7 +75,7 @@ public class OperatorService
 			// BY (all)
 			case 25701: return R.drawable.logo_velcom;
 			case 25702: return R.drawable.logo_mts;
-			case 25703: return R.drawable.logo_dialog;
+			case 25703: return R.drawable.logo_diallog;
 			case 25704: return R.drawable.logo_life_by;
 			
 			// RU (part)
@@ -133,6 +133,23 @@ public class OperatorService
 			case 24804: return R.drawable.logo_top_connect;
 			case 24805: return R.drawable.logo_bravocom;
 			case 24806: return R.drawable.logo_progroup_holding;
+			
+			// AM (all)
+			case 28301: return R.drawable.logo_beeline_ua;
+			case 28305: return R.drawable.logo_vivacell_mts;
+			case 28310: return R.drawable.logo_orange;
+			
+			// KG (all)
+			case 43701: return R.drawable.logo_beeline_ua;
+			case 43703: return R.drawable.logo_fonex;
+			case 43705: return R.drawable.logo_megacom;
+			case 43709: return R.drawable.logo_o;
+			
+			// MD (all, 03 code is shared)
+			case 25901: return R.drawable.logo_orange;
+			case 25902: return R.drawable.logo_moldcell;
+			case 25903: return R.drawable.logo_idc;
+			case 25905: return R.drawable.logo_unite;
 		}
 		
 		return R.drawable.logo_unknown;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="footer">© 2010—2011 Valera Leontyev. MobiOp widget. Version 0.3.4 alpha. Web: http://valera.ws/mobiop/ E-mail: feedbee@gmail.com</string>
+	<string name="footer">© 2010—2011 Valera Leontyev. MobiOp widget. Version 0.3.4 alpha 2. Web: http://valera.ws/mobiop/ E-mail: feedbee@gmail.com</string>
 	<string name="about">MobiOp is an Android Home Screen widget. It displays current Mobile Cellular Operator name and logo.
-All logos are embedded in program. Currently supported mobile networks of the countries: RU (particular), BY, UA, KZ, UZ, LT, LV, EE. Pressing the widget initiates USSD &quot;get current balance&quot; request (*100#).</string>
+All logos are embedded in program. Currently supported mobile networks of the countries: RU (particular), BY, UA, KZ, KG, AM, UZ, LT, LV, EE, MD. Pressing the widget initiates USSD &quot;get current balance&quot; request (*100#).</string>
 	<string name="app_name">MobiOp</string>
 	<string name="app_desc">Mobile operator logo and name widget</string>
 </resources>
