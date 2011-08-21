@@ -4,7 +4,6 @@
   android:layout_height="100dp"
   android:layout_width="80dp"
   android:orientation="horizontal"
-  android:background="@drawable/red_bg"
   android:gravity="center_vertical"
   >
 	<RelativeLayout android:id="@+id/widgetLayout"
