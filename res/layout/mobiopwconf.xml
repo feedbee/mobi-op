@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<RelativeLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_marginBottom="10dp" android:layout_marginTop="10dp">
+		<Button
+			android:id="@+id/cfgBtnQuit"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/cfg_button_quit"
+			/>
+		<Button android:id="@+id/cfgBtnApply"
+			android:enabled="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/cfg_button_apply"
+			android:layout_toRightOf="@id/cfgBtnQuit"
+			/>
+	</RelativeLayout>
+    <TextView android:id="@+id/cfgTextView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cfg_nw"></TextView>
+    <ListView android:id="@+id/cfgNwList" android:layout_height="wrap_content" android:layout_width="fill_parent" android:choiceMode="singleChoice"></ListView>
+    <TextView android:id="@+id/cfgTextView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cfg_nw_name"></TextView>
+    <EditText android:id="@+id/cfgNwName" android:layout_height="wrap_content" android:layout_width="fill_parent"></EditText>
+</LinearLayout>

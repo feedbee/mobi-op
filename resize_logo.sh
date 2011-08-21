@@ -3,6 +3,7 @@
 we=$1
 he=$2
 t=$4
+c=$5
 
 for file in $3
 do
@@ -32,10 +33,18 @@ do
 				# подгон по ширине
 					convert "$file" -resize "$we" "$t/$filename~";
 				fi
+			else
+				cp "$file" "$t/$filename~"
 			fi
 			# расширяем полотно до эталонного размера
-			convert "$t/$filename~" -gravity center -background None -extent "${we}x${he}" "$t/$filename";
-			echo "Converted";
+			if [[ $c == "canvas" ]]
+			then
+				convert "$t/$filename~" -gravity center -background None -extent "${we}x${he}" "$t/$filename";
+			else
+				cp "$t/$filename~" "$t/$filename"
+			fi
+			rm "$t/$filename~"
+			#echo "Converted";
 		fi
 	fi
 
