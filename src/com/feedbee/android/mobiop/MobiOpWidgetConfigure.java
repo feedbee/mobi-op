@@ -4,17 +4,11 @@ import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -23,7 +17,6 @@ public class MobiOpWidgetConfigure extends Activity
 {
 	public static final String DEBUG_TAG = "MobiOpWidgetConfigure";
 	
-	private static final int VIEW_ID_START = 0x7f071000;
 	public static final int WIDGET_INFO_TYPE_SIM = 0;
 	public static final int WIDGET_INFO_TYPE_NETWORK = 1;
 	
@@ -111,24 +104,34 @@ public class MobiOpWidgetConfigure extends Activity
 		
 		// Save
 		final Context context = MobiOpWidgetConfigure.this;
-		/*int id = ((RadioGroup)this.findViewById(R.id.wc_phone_list))
-				.getCheckedRadioButtonId() - VIEW_ID_START;
-		ActionData actionData = null;
-		if (id > 0 && id <= this.lastPhoneList.length)
+		int id = ((RadioGroup)this.findViewById(R.id.cfgOperatorType))
+				.getCheckedRadioButtonId();
+		WidgetConfig.OPERATOR operator = id == R.id.cfgOperatorTypeNw
+			? WidgetConfig.OPERATOR.NETWORK
+			: WidgetConfig.OPERATOR.SIM;
+		boolean showNwTitle = ((CheckBox)this.findViewById(R.id.cfgShowTitle)).isChecked();
+		String customTitle = ((TextView)this.findViewById(R.id.cfgNwTitle)).getText().toString();
+		String nwCustomCode = ((TextView)this.findViewById(R.id.cfgNwCode)).getText().toString();
+		int nwCodeInt = 0;
+		if (!nwCustomCode.equals(""))
 		{
-			actionData = new ActionData(this.lastPhoneList[id - 1].number, WIDGET_ACTION_TYPE_CALL);
+			try {
+				nwCodeInt = Integer.parseInt(nwCustomCode);
+			}
+			catch (NumberFormatException e){}
+			if (!OperatorService.OPERATORS.containsKey(nwCodeInt))
+			{
+				nwCodeInt = 0;
+			}
 		}
-		else if (id == 0)
-		{
-			actionData = new ActionData("", WIDGET_ACTION_TYPE_CONTACT);
-		}
-		boolean displayName = ((CheckBox)this.findViewById(R.id.wc_display_name)).isChecked();
-		Storage.saveWidgetConfig(context, this.appWidgetId,
-				new WidgetConfig(this.contact.getLookupUri(), actionData, displayName));*/
 		
-		// Push widget update to surface with newly set prefix
+		Storage.saveWidgetConfig(context, this.appWidgetId,
+				new WidgetConfig(showNwTitle, customTitle.equals("") ? null : customTitle,
+						nwCodeInt == 0 ? null : nwCodeInt, null, operator));
+		
+		// Push widget update
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-		//MobiOpWidget.updateWidget(context, appWidgetManager, this.appWidgetId);
+		MobiOpWidget.updateWidget(context, appWidgetManager, this.appWidgetId);
 		
 		// Exit: Make sure we pass back the original appWidgetId
 		Intent resultValue = new Intent();

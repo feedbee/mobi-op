@@ -47,11 +47,11 @@ public class MobiOpWidget extends AppWidgetProvider
 			AppWidgetManager.getInstance(context).getAppWidgetIds(cn));
 	}
 	
-	protected void setClickHandler(Context context, RemoteViews views)
+	protected static void setClickHandler(Context context, RemoteViews views, String ussd)
 	{
 		Log.d("MobiOpDebug", "initialize");
 		Intent intent = new Intent("android.intent.action.CALL",
-				Uri.parse("tel:*100" + Uri.encode("#")));
+				Uri.parse("tel:" + Uri.encode(ussd)));
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, intent, 1);
         
         //views.setOnClickPendingIntent(R.id.text, pendingIntent);
@@ -62,21 +62,39 @@ public class MobiOpWidget extends AppWidgetProvider
 	{
 		Log.d("MobiOpDebug", "updateState");
 		
-		OperatorInfo opInfo = OperatorService.getNetworkOperatorInfo(context);
-		
 		final int N = appWidgetIds.length;
 		for (int i=0; i<N; i++)
 		{
 			int appWidgetId = appWidgetIds[i];
-			
-			RemoteViews views = new RemoteViews("com.feedbee.android.mobiop", R.layout.mobiopw);
-			
-			views.setTextViewText(R.id.text, opInfo.getName());
-			views.setImageViewResource(R.id.opLogo, opInfo.getLogoResId());
-			this.setClickHandler(context, views);
-			
-			appWidgetManager.updateAppWidget(appWidgetId, views);
+			updateWidget(context, appWidgetManager, appWidgetId);
 		}
+	}
+	
+	public static void updateWidget(Context context, AppWidgetManager appWidgetManager,
+			int appWidgetId)
+	{
+		Log.d("MobiOpDebug", "Update widget " + appWidgetId);
+		
+		WidgetConfig widgetConfig = Storage.loadWidgetConfig(context, appWidgetId);
+		if (widgetConfig == null)
+		{
+			widgetConfig = new WidgetConfig(true, null, null, null, WidgetConfig.OPERATOR.NETWORK);
+		}
+		
+		OperatorInfo opInfo = widgetConfig.operator == WidgetConfig.OPERATOR.NETWORK
+			? OperatorService.getNetworkOperatorInfo(context)
+			: OperatorService.getSimOperatorInfo(context);
+		
+		RemoteViews views = new RemoteViews("com.feedbee.android.mobiop", R.layout.mobiopw);
+		
+		views.setTextViewText(R.id.text, widgetConfig.customTitle == null
+				? opInfo.getName() : widgetConfig.customTitle);
+		views.setImageViewResource(R.id.opLogo, widgetConfig.customNetworkCode == null
+				? opInfo.getLogoResId() : OperatorService.OPERATORS.get(widgetConfig.customNetworkCode));
+		setClickHandler(context, views, widgetConfig.customUssd == null
+				? "*100#" : widgetConfig.customUssd);
+		
+		appWidgetManager.updateAppWidget(appWidgetId, views);
 	}
 	
 	protected void registerListener(Context context)

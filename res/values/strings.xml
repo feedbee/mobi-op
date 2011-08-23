@@ -5,8 +5,12 @@
 All logos are embedded in program. Currently supported mobile networks of the countries: RU (particular), BY, UA, KZ, KG, AM, UZ, LT, LV, EE, MD. Pressing the widget initiates USSD &quot;get current balance&quot; request (*100#).</string>
 	<string name="app_name">MobiOp</string>
 	<string name="app_desc">Mobile operator logo and name widget</string>
-	<string name="cfg_nw_name">Network Name</string>
-	<string name="cfg_nw">Network</string>
+	<string name="cfg_nw_title">Network Title</string>
+	<string name="cfg_show_title">Show Network Title</string>
+	<string name="cfg_nw_code">Network Code</string>
+	<string name="cfg_op_type">Operator Type</string>
+	<string name="cfg_op_type_sim">Sim Card</string>
+	<string name="cfg_op_type_nw">Real Network</string>
 	<string name="cfg_button_apply">Apply</string>
 	<string name="cfg_button_quit">Quit</string>
 </resources>

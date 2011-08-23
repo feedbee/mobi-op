@@ -1,5 +1,8 @@
 package com.feedbee.android.mobiop;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.HashMap;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -10,6 +13,89 @@ public class OperatorService
 	
 	protected static final int OPERATOR_SIM = 1;
 	protected static final int OPERATOR_NETWORK = 2;
+	
+	// http://en.wikipedia.org/wiki/Mobile_Network_Code
+	@SuppressWarnings("serial")
+	public final static Map<Integer, Integer> OPERATORS = 
+		Collections.unmodifiableMap(new HashMap<Integer, Integer>() {{
+			put(25701, R.drawable.logo_velcom);
+			put(25702, R.drawable.logo_mts);
+			put(25703, R.drawable.logo_diallog);
+			put(25704, R.drawable.logo_life_by);
+
+			// RU (part)
+			put(25001, R.drawable.logo_mts);
+			put(25002, R.drawable.logo_megafon);
+			put(25017, R.drawable.logo_usi);
+			put(25039, R.drawable.logo_usi);
+			put(25020, R.drawable.logo_tele2);
+			put(25028, R.drawable.logo_beeline_ru);
+			put(25099, R.drawable.logo_beeline_ru);
+
+			// UA (part)
+			put(25501, R.drawable.logo_mts);
+			put(25502, R.drawable.logo_beeline_ua);
+			put(25503, R.drawable.logo_kyivstar);
+			put(25504, R.drawable.logo_intertelecom);
+			put(25505, R.drawable.logo_golden_telecom_ua);
+			put(25506, R.drawable.logo_life_ua);
+			put(25507, R.drawable.logo_ukrtelecom);
+			put(25521, R.drawable.logo_peoplenet);
+			put(25523, R.drawable.logo_cdma_ua);
+
+			// KZ (all)
+			put(40101, R.drawable.logo_beeline_ua);
+			put(40102, R.drawable.logo_kcell);
+			put(40107, R.drawable.logo_dalacom);
+			put(40108, R.drawable.logo_kazakhtelecom);
+			put(40177, R.drawable.logo_neogsm);
+
+			// UZ (all)
+			put(43404, R.drawable.logo_beeline_ua);
+			put(43405, R.drawable.logo_ucell);
+			put(43406, R.drawable.logo_perfectum_mobile);
+			put(43407, R.drawable.logo_mts);
+
+			// LT (all)
+			put(24601, R.drawable.logo_omnitel);
+			put(24602, R.drawable.logo_bite_lt);
+			put(24603, R.drawable.logo_tele2);
+			put(24606, R.drawable.logo_mediafon);
+
+			// LV (all)
+			put(24701, R.drawable.logo_lmt);
+			put(24702, R.drawable.logo_tele2);
+			put(24703, R.drawable.logo_triatel);
+			put(24705, R.drawable.logo_bite_lv);
+			put(24706, R.drawable.logo_mastertelecom);
+			put(24707, R.drawable.logo_izzi);
+			put(24708, R.drawable.logo_camelmobile);
+
+			// EE (all)
+			put(24801, R.drawable.logo_emt);
+			put(24802, R.drawable.logo_elisa);
+			put(24803, R.drawable.logo_tele2);
+			put(24804, R.drawable.logo_top_connect);
+			put(24805, R.drawable.logo_bravocom);
+			put(24806, R.drawable.logo_progroup_holding);
+
+			// AM (all)
+			put(28301, R.drawable.logo_beeline_ua);
+			put(28305, R.drawable.logo_vivacell_mts);
+			put(28310, R.drawable.logo_orange);
+
+			// KG (all)
+			put(43701, R.drawable.logo_beeline_ua);
+			put(43703, R.drawable.logo_fonex);
+			put(43705, R.drawable.logo_megacom);
+			put(43709, R.drawable.logo_o);
+
+			// MD (all, 03 code is shared)
+			put(25901, R.drawable.logo_orange);
+			put(25902, R.drawable.logo_moldcell);
+			put(25903, R.drawable.logo_idc);
+			put(25905, R.drawable.logo_unite);
+	    }});
 	
 	private OperatorService() throws Exception
 	{
@@ -69,8 +155,17 @@ public class OperatorService
 	
 	protected static int getLogoByCode(int operatorCode)
 	{
+		if (OPERATORS.containsKey(operatorCode))
+		{
+			return OPERATORS.get(operatorCode);
+		}
+		else
+		{
+			return R.drawable.logo_unknown;
+		}
+		
 		// http://en.wikipedia.org/wiki/Mobile_Network_Code
-		switch (operatorCode)
+		/*switch (operatorCode)
 		{
 			// BY (all)
 			case 25701: return R.drawable.logo_velcom;
@@ -152,6 +247,6 @@ public class OperatorService
 			case 25905: return R.drawable.logo_unite;
 		}
 		
-		return R.drawable.logo_unknown;
+		return R.drawable.logo_unknown;*/
 	}
 }
